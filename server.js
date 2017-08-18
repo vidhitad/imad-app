@@ -54,7 +54,7 @@ app.get('/test-db', function (req,res){
 
 app.get('/articles/:articlename', function(req,res){
     
-   pool.query("SELECT * from Article ",function(err,result){
+   pool.query("SELECT * from 'Article' ",function(err,result){
        if (err){
            res.status(500).send(err.toString());
        }else{
