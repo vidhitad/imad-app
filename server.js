@@ -52,6 +52,24 @@ app.get('/test-db', function (req,res){
     
 });
 
+app.get('/articles/:articlename', function(req,res){
+    
+   pool.qurey('SELCT * from Article WHERE title='+req.params.articlename,function(err,result){
+       if (err){
+           res.status(500).send(err.toString());
+       }else{
+           if(result.rows.length ==0){
+               res.status(404).send('Article not found');
+           }else{
+            var articledata = result.rows[0];
+            req.send(JSON.stringify(articledata));
+           }
+       }
+       
+   }) ;
+   
+});
+
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
