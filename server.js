@@ -61,8 +61,10 @@ app.get('/articles/:articlename', function(req,res){
            if(result.rows.length ===0){
                res.status(404).send('Article not found');
            }else{
-            var articledata = result.rows[0];
-            req.send(JSON.stringify(articledata));
+              res.send(JSON.stringify(result.rows));
+            //  WHERE title='"+req.params.articlename+"'"
+            //var articledata = result.rows[0];
+            //req.send(JSON.stringify(articledata));
            }
        }
        
