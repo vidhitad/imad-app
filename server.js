@@ -5,8 +5,8 @@ var crypto= require('crypto');
 var Pool = require('pg').Pool;
 
 var config = {
-    user:"coco98",
-    database:"coco98",
+    user:"phatakbhakti83",
+    database:"phatakbhakti83",
     host:'db.imad.hasura-app.io',
     port:"5432",
     password:process.env.DB_PASSWORD
