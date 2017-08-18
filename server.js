@@ -55,6 +55,29 @@ app.post('/createuser',function(req,res){
     })
 });
 
+app.post('/login', function(req,res){
+    var username = req.body.username;
+    var password = req.body.password;
+
+    pool.query('SELEct * from "Users" where "Username"=$1',[username], function(err, result){
+        if(err){
+            res.status(500).send(err.toString());
+        } else{
+            if (result.rows.length ===0){
+                res. status(403).send('username/password does not exist');
+            }else{
+                var dbString = result.rows[0].password;
+                if (password === dbString){
+                    res.send('User Logged in!!');
+                }
+            }
+    }
+    });
+    
+    
+});
+
+
 var pool = new Pool(config);
 app.get('/test-db', function (req,res){
     //make a select request
@@ -87,7 +110,7 @@ app.get('/articles/:articlename', function(req,res){
        
    }) ;
    
-});
+});)
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
